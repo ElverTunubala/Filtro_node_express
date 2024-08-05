@@ -1,4 +1,4 @@
-# Proyecto Final NodeJS - TypeScript
+
 
 ## Libreriás utilizadas
 
@@ -66,10 +66,3 @@ project-name/
   - **tsconfig.json**: Archivo de configuración de TypeScript.
   - **index.ts**: Archivo principal de la aplicación.
 
-## Novedades
-
-- **Inyección de dependencias**: Utilizamos tsyringe para inyectar dependencias en las clases de la aplicación. Recuerden en la clase pasada como hablamos de la inyección de dependencias y como nos ayuda a desacoplar las clases de la aplicación y no tener que instanciar las dependencias en los metodos de las clases.
-- **ORM con sequelize**: Utilizamos sequelize como ORM para interactuar con la base de datos MySQL. Sequelize es un ORM para Node.js que nos permite interactuar con la base de datos utilizando objetos en lugar de consultas SQL. Para obtener más información sobre Sequelize, pueden visitar el siguiente enlace: [Sequelize](../../ORM/sequelize.md) y [ORM](../../ORM/README.md).
-- **Decoradores de Sequelize**: Utilizamos decoradores de Sequelize para definir modelos, relaciones y validaciones en las clases de los modelos. Esto nos permite definir los modelos de la aplicación con clases de TypeScript y no con objetos JSON.
-- **CORS**: Implementamos CORS en la aplicación para permitir que los recursos de la API sean accesibles desde cualquier dominio. CORS es una política de seguridad que se aplica en los navegadores web para restringir las solicitudes HTTP que se pueden hacer desde un dominio a otro, para obtener más información sobre CORS, pueden visitar el siguiente enlace: [CORS](../../cors/README.md).
-- **JWT**: Implementamos JWT en la aplicación para autenticar a los usuarios y proteger las rutas de la API. JWT es un estándar abierto que define un método compacto y autónomo para transmitir de forma segura la información entre las partes como un objeto JSON. Para obtener más información sobre JWT, pueden visitar el siguiente enlace: [JWT](../../jwt/README.md).
