@@ -4,6 +4,7 @@ import { CreationAttributes } from 'sequelize';
 
 @injectable() //Significa que la clase es un servicio que puede ser inyectado
 export default class ProductRepository {
+
     //obtener todos los productos
     async findAll() {
         return await Product.findAll();
@@ -12,11 +13,11 @@ export default class ProductRepository {
     async findById(id: number) {
         return await Product.findByPk(id);
     }
-
+    //obtener productos relazionados con ese id
     async findByUserId(userId: number) {
         return await Product.findAll({ where: { userId } });
     }
-
+    // crear productos
     async create(product: CreationAttributes<Product>) {
         return await Product.create(product);
     }
@@ -36,8 +37,17 @@ export default class ProductRepository {
         }
         return await productToDelete.destroy();
     }
+    //metodo para habilitar/inhabilitar productos
 
-    
+    async setEstate(id: number, state: boolean) {
+        const productToUpdate = await Product.findByPk(id);
+        if (!productToUpdate) {
+            throw new Error('Product not found');
+        }
+        productToUpdate.state = state;
+        return await productToUpdate.save();
+    }
+
 }
 
 /**

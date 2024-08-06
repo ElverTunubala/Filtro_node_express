@@ -48,36 +48,10 @@ export default class UserService {
       throw new Error(error.message);
     }
   }
-  // async enableUser(id: number) {
-  //   try {
-  //     return await this.userRepository.setEstate(id, true);
-  //   } catch (error:any) {
-  //     throw new Error(error.message);
-  //   }
-  // }
 
-  // async disableUser(id: number) {
-  //   try {
-  //     return await this.userRepository.setEstate(id, false);
-  //   } catch (error:any) {
-  //     throw new Error(error.message);
-  //   }
-  // }
-
-  //obtener productos
+  //obtener productos relazionados con el id del usuario
   async getUserWithProducts(userId: number) {
     return await this.userRepository.findUserWithProducts(userId);
   }
-
-  
 }
 
-
-
-/**
- * @injectable() es un decorador que indica que la clase es un servicio que puede ser inyectado en otras clases.
- * @inject(UserRepository) es un decorador que indica que el parámetro userRepository del constructor debe ser resuelto por el contenedor de inyección de dependencias.
- * El contenedor de inyección de dependencias se encarga de crear una instancia de la clase UserService y de inyectar una instancia de UserRepository en el parámetro userRepository del constructor.
- *
- * Partial se utiliza para definir un tipo que tiene todas las propiedades de otro tipo como opcionales.
- */

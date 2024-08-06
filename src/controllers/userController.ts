@@ -66,26 +66,6 @@ export default class UserController {
       }
     }
   }
-  // static async enableUser(req: Request, res: Response) {
-  //   try {
-  //     const userService = container.resolve(UserService);
-  //     const user = await userService.enableUser(parseInt(req.params.id));
-  //     res.json(user);
-  //   } catch (error:any) {
-  //     res.status(500).json({ message: error.message });
-  //   }
-  // }
-
-  // static async disableUser(req: Request, res: Response) {
-  //   try {
-  //     const userService = container.resolve(UserService);
-  //     const user = await userService.disableUser(parseInt(req.params.id));
-  //     res.json(user);
-  //   } catch (error:any) {
-  //     res.status(500).json({ message: error.message });
-  //   }
-  // }
-
   //obtener productos
   static async getUserWithProducts(req: Request, res: Response) {
     const userService = container.resolve(UserService);
@@ -95,7 +75,5 @@ export default class UserController {
     } else {
         res.status(404).json({ message: "User not found" });
     }
-}
-
-  
+  }
 }

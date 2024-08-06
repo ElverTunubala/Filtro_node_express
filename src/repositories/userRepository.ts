@@ -36,14 +36,6 @@ export default class UserRepository {
         }
         return await userToDelete.destroy();
     }
-    // async setEstate(id: number, estate: boolean) {
-    //     const userToUpdate = await User.findByPk(id);
-    //     if (!userToUpdate) {
-    //         throw new Error('User not found');
-    //     }
-    //     userToUpdate.estate = estate;
-    //     return await userToUpdate.save();
-    // }
 
     //para consultar productos relazionados a un usuario
     async findUserWithProducts(userId: number) {
@@ -51,7 +43,7 @@ export default class UserRepository {
             include: [
                 {
                     model: Product,
-                    attributes: ['id', 'name', 'price'] // selecciona las columnas específicas que necesitas
+                    attributes: ['id', 'name', 'price'] // aqui se selecciona las columnas específicas que necesito mostrar
                 }
             ]
         });

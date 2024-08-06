@@ -10,6 +10,7 @@ export default class AuthController {
       const { email, password } = req.body;
       const authService = container.resolve(AuthService);
       const user: User = await authService.checkUserCredentials(email,password);
+      
       // Generar token JWT
       const token = AuthController.generateToken({id: user.id,username: user.email,});
       res.status(200).json({ status: 200, token });

@@ -14,6 +14,7 @@ import {
 import { Product } from './product';
 import {Rol} from './role'
 import bcrypt from 'bcrypt';
+import { Order } from "./order";
 
 @Table({tableName: "users",
   timestamps: true, // Con true Sequelize maneje los timestamps automáticamente
@@ -64,6 +65,10 @@ export class User extends Model {
   //un usuario puede tener muchos productos
   @HasMany(() => Product)
   products!: Product[];
+
+  //un usuario puede tener muchos pedidos
+  @HasMany(() => Order)
+  pedidos!: Order[];
 
   @BeforeCreate
   @BeforeUpdate

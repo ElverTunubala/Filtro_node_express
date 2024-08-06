@@ -7,8 +7,10 @@ import {
     BelongsTo,
     PrimaryKey,
     AutoIncrement,
+    HasMany,
 } from 'sequelize-typescript';
 import { User } from './user';
+import { ProductCart } from './productCard';
 
 @Table({ tableName: "products", timestamps: true }) // con true Sequelize maneje los timestamps automáticamente
 export class Product extends Model<Product> {
@@ -43,6 +45,16 @@ export class Product extends Model<Product> {
     },
   })
   description!: string;
+  
+  //estado del producto
+  @Column({ type: DataType.BOOLEAN, allowNull: false,
+    validate: {
+      notNull: {
+        msg: "Estate is required"
+      }
+    }
+  })
+  state!: boolean;
 
   @Column({ type: DataType.INTEGER, allowNull: false,
     validate: {notNull: { msg: "stock is required"} } 
@@ -56,4 +68,8 @@ export class Product extends Model<Product> {
   //un producto pertenece a un usuario
   @BelongsTo(() => User)
   user!: User;
+
+  //un producto puede estar en muchos carritos
+  @HasMany(() => ProductCart)
+  productcart!: ProductCart[];
 }

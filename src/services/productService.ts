@@ -43,5 +43,21 @@ export default class ProductService {
         } catch (error:any) {
           throw new Error(error.message);
         }
-      }
+    }
+    //habilitar un prodcuto
+    async enableProduct(id: number) {
+     try {
+      return await this.productRepository.setEstate(id, true);
+     } catch (error:any) {
+      throw new Error(error.message);
+     }
+    }
+    //deshabilitar un producto
+    async disableProduct(id: number) {
+     try {
+      return await this.productRepository.setEstate(id, false);
+     } catch (error:any) {
+      throw new Error(error.message);
+     }
+    }
 }
