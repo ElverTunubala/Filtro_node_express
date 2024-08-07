@@ -1,4 +1,4 @@
-# Proyecto Final NodeJS - TypeScript
+
 
 ## Libreriás utilizadas
 
@@ -66,4 +66,7 @@ project-name/
   - **tsconfig.json**: Archivo de configuración de TypeScript.
   - **index.ts**: Archivo principal de la aplicación.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5cd616027ec1ff06268f090393a174baa5a3c907
