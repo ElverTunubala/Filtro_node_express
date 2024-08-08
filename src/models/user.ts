@@ -15,6 +15,7 @@ import { Product } from './product';
 import {Rol} from './role'
 import bcrypt from 'bcrypt';
 import { Order } from "./order";
+import { Cart } from "./cart";
 
 @Table({tableName: "users",
   timestamps: true, // Con true Sequelize maneje los timestamps automáticamente
@@ -28,7 +29,7 @@ export class User extends Model {
   @Column({type: DataType.STRING, allowNull: false, unique: true,
     validate: {len: {
       args: [10, 200],
-      msg: "email must be between 5 and 200 characters long"
+      msg: "email must be between 10 and 200 characters long"
       },
       isEmail: { msg: "Invalid email address"}
     }
@@ -45,15 +46,6 @@ export class User extends Model {
   })
   password!: string;
 
-  // @Column({ type: DataType.BOOLEAN, allowNull: false,
-  //   validate: {
-  //     notNull: {
-  //       msg: "Estate is required"
-  //     }
-  //   }
-  // })
-  // rol!: boolean;
-
   @ForeignKey(() => Rol)
   @Column({type: DataType.INTEGER, allowNull: false})
   rolId!: number;
@@ -61,6 +53,10 @@ export class User extends Model {
   //un usuario solo puede tener un rol
   @BelongsTo(() => Rol)
   role!: Rol;
+  
+  //un usuario solo puede tener un carrito
+  @BelongsTo(() => Cart)
+  cart!: Cart;
 
   //un usuario puede tener muchos productos
   @HasMany(() => Product)

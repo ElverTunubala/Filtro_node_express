@@ -46,5 +46,9 @@ export class Order extends Model {
     //un pedido pertenece a un usuario
     @BelongsTo(() => User)
     user!: User;
+    
+    //un pedido pertenece a un carrito
+    @BelongsTo(() => ProductCart)
+    productCart!: ProductCart;
 }
   

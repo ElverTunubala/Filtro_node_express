@@ -8,11 +8,13 @@ import {
     HasMany,
     BelongsTo,
     ForeignKey,
+    BelongsToMany,
   } from "sequelize-typescript";
   import { Product } from './product';
   import {User} from './user'
+import { ProductCart } from "./productCard";
   
-  @Table({tableName: "cart",timestamps: true,})
+  @Table({tableName: "carts",timestamps: true,})
   export class Cart extends Model {
     @PrimaryKey
     @AutoIncrement
@@ -26,9 +28,9 @@ import {
     //un carrito solo puede tener un usuario
     @BelongsTo(() => User)
     user!: User;
-
-    //un carrito puede tener muchos productos
-    @HasMany(() =>Product)
-    productos!: Product[];
+    
+    //nuevo
+    @BelongsToMany(() => Product, () => ProductCart)
+    products!: Product[];
 }
   

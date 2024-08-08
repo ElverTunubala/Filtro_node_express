@@ -11,7 +11,7 @@ import {
 import { Product } from './product';
 import { Cart } from "./cart";
   
-@Table({tableName: "productCart", timestamps: true, })
+@Table({tableName: "productCarts", timestamps: true, })
   export class ProductCart extends Model {
     @PrimaryKey
     @AutoIncrement
@@ -30,10 +30,6 @@ import { Cart } from "./cart";
         validate: {notNull: { msg: "quantity is required"} } 
     })
     quantity!: number;
-
-    //un carrito puede tener muchos productos
-    // @HasMany(() => Product)
-    // productos!: Product[];
 
 }
   

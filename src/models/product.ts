@@ -8,9 +8,11 @@ import {
     PrimaryKey,
     AutoIncrement,
     HasMany,
+    BelongsToMany,
 } from 'sequelize-typescript';
 import { User } from './user';
 import { ProductCart } from './productCard';
+import { Cart } from './cart';
 
 @Table({ tableName: "products", timestamps: true }) // con true Sequelize maneje los timestamps automáticamente
 export class Product extends Model<Product> {
@@ -69,7 +71,7 @@ export class Product extends Model<Product> {
   @BelongsTo(() => User)
   user!: User;
 
-  //un producto puede estar en muchos carritos
-  @HasMany(() => ProductCart)
-  productcart!: ProductCart[];
+  // lo nuevo
+  @BelongsToMany(() => Cart, () => ProductCart)
+  carts!: Cart[];
 }

@@ -11,13 +11,14 @@ export class Rol extends Model {
   
     @Column({type: DataType.STRING, allowNull: false,
       validate: { notEmpty: {msg: "Name is required"},
-        len: {args: [10, 200],
-            msg: "Name must be between 10 and 200 characters long"
+        len: {args: [5, 200],
+            msg: "Name must be between 5 and 200 characters long"
         }
       }
     })
     name!: string;
-
+    
+    //un rol lo puede estar en varios usuarios
     @HasMany(() => User)
     users!: User[];
 }
