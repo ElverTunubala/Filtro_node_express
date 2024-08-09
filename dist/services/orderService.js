@@ -15,63 +15,51 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const userRepository_1 = __importDefault(require("../repositories/userRepository"));
 const tsyringe_1 = require("tsyringe");
-let UserService = class UserService {
-    constructor(userRepository) {
-        this.userRepository = userRepository;
+const orderRepository_1 = __importDefault(require("../repositories/orderRepository"));
+let OrderService = class OrderService {
+    constructor(orderRepository) {
+        this.orderRepository = orderRepository;
     }
-    async getAllUsers() {
-        return await this.userRepository.findAll();
+    async getAllOrders() {
+        return await this.orderRepository.findAll();
     }
-    async getUserById(id) {
+    async getOrderById(id) {
         try {
-            return await this.userRepository.findById(id);
+            return await this.orderRepository.findById(id);
         }
         catch (error) {
             throw new Error(error.message);
         }
     }
-    async getUserByEmail(email) {
+    async createOrder(order) {
         try {
-            return await this.userRepository.findByEmail(email);
+            return await this.orderRepository.create(order);
         }
         catch (error) {
             throw new Error(error.message);
         }
     }
-    async createUser(user) {
+    async updateOrder(id, order) {
         try {
-            return await this.userRepository.create(user);
+            return await this.orderRepository.update(id, order);
         }
         catch (error) {
             throw new Error(error.message);
         }
     }
-    async updateUser(id, user) {
+    async deleteOrder(id) {
         try {
-            return await this.userRepository.update(id, user);
+            await this.orderRepository.delete(id);
         }
         catch (error) {
             throw new Error(error.message);
         }
-    }
-    async deleteUser(id) {
-        try {
-            await this.userRepository.delete(id);
-        }
-        catch (error) {
-            throw new Error(error.message);
-        }
-    }
-    //obtener productos relazionados con el id del usuario
-    async getUserWithProducts(userId) {
-        return await this.userRepository.findUserWithProducts(userId);
     }
 };
-UserService = __decorate([
+OrderService = __decorate([
     (0, tsyringe_1.injectable)(),
-    __param(0, (0, tsyringe_1.inject)(userRepository_1.default)),
-    __metadata("design:paramtypes", [userRepository_1.default])
-], UserService);
-exports.default = UserService;
+    __param(0, (0, tsyringe_1.inject)(orderRepository_1.default)),
+    __metadata("design:paramtypes", [orderRepository_1.default])
+], OrderService);
+exports.default = OrderService;

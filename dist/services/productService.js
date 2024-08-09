@@ -56,6 +56,24 @@ let ProductService = class ProductService {
             throw new Error(error.message);
         }
     }
+    //habilitar un prodcuto
+    async enableProduct(id) {
+        try {
+            return await this.productRepository.setEstate(id, true);
+        }
+        catch (error) {
+            throw new Error(error.message);
+        }
+    }
+    //deshabilitar un producto
+    async disableProduct(id) {
+        try {
+            return await this.productRepository.setEstate(id, false);
+        }
+        catch (error) {
+            throw new Error(error.message);
+        }
+    }
 };
 ProductService = __decorate([
     (0, tsyringe_1.injectable)(),

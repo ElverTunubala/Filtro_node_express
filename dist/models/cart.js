@@ -9,37 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Rol = void 0;
+exports.Cart = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
+const product_1 = require("./product");
 const user_1 = require("./user");
-const permissions_1 = require("./permissions");
-let Rol = class Rol extends sequelize_typescript_1.Model {
+const productCard_1 = require("./productCard");
+let Cart = class Cart extends sequelize_typescript_1.Model {
 };
-exports.Rol = Rol;
+exports.Cart = Cart;
 __decorate([
     sequelize_typescript_1.PrimaryKey,
     sequelize_typescript_1.AutoIncrement,
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
     __metadata("design:type", Number)
-], Rol.prototype, "id", void 0);
+], Cart.prototype, "id", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: false,
-        validate: { notEmpty: { msg: "Name is required" },
-            len: { args: [5, 200],
-                msg: "Name must be between 5 and 200 characters long"
-            }
-        }
-    }),
-    __metadata("design:type", String)
-], Rol.prototype, "name", void 0);
+    (0, sequelize_typescript_1.ForeignKey)(() => user_1.User),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, allowNull: false }),
+    __metadata("design:type", Number)
+], Cart.prototype, "userId", void 0);
 __decorate([
-    (0, sequelize_typescript_1.HasMany)(() => user_1.User),
+    (0, sequelize_typescript_1.BelongsTo)(() => user_1.User),
+    __metadata("design:type", user_1.User)
+], Cart.prototype, "user", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsToMany)(() => product_1.Product, () => productCard_1.ProductCart),
     __metadata("design:type", Array)
-], Rol.prototype, "users", void 0);
-__decorate([
-    (0, sequelize_typescript_1.HasMany)(() => permissions_1.Permission),
-    __metadata("design:type", Array)
-], Rol.prototype, "permissions", void 0);
-exports.Rol = Rol = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "roles", timestamps: false }) // Con false Sequelize ya no maneje los timestamps automáticamente
-], Rol);
+], Cart.prototype, "products", void 0);
+exports.Cart = Cart = __decorate([
+    (0, sequelize_typescript_1.Table)({ tableName: "carts", timestamps: true, })
+], Cart);

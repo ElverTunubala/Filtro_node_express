@@ -17,6 +17,8 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const product_1 = require("./product");
 const role_1 = require("./role");
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const order_1 = require("./order");
+const cart_1 = require("./cart");
 let User = class User extends sequelize_typescript_1.Model {
     static async hashPassword(user) {
         if (user.changed('password')) {
@@ -36,7 +38,7 @@ __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING, allowNull: false, unique: true,
         validate: { len: {
                 args: [10, 200],
-                msg: "email must be between 5 and 200 characters long"
+                msg: "email must be between 10 and 200 characters long"
             },
             isEmail: { msg: "Invalid email address" }
         }
@@ -64,9 +66,17 @@ __decorate([
     __metadata("design:type", role_1.Rol)
 ], User.prototype, "role", void 0);
 __decorate([
+    (0, sequelize_typescript_1.HasOne)(() => cart_1.Cart),
+    __metadata("design:type", cart_1.Cart)
+], User.prototype, "cart", void 0);
+__decorate([
     (0, sequelize_typescript_1.HasMany)(() => product_1.Product),
     __metadata("design:type", Array)
 ], User.prototype, "products", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => order_1.Order),
+    __metadata("design:type", Array)
+], User.prototype, "pedidos", void 0);
 __decorate([
     sequelize_typescript_1.BeforeCreate,
     sequelize_typescript_1.BeforeUpdate,

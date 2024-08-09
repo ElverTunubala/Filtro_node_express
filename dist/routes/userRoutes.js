@@ -12,6 +12,4 @@ exports.userRouter.get('/:id', userController_1.default.getUserById);
 exports.userRouter.post('/', userController_1.default.createUser);
 exports.userRouter.put('/:id', userController_1.default.updateUser);
 exports.userRouter.delete('/:id', userController_1.default.deleteUser);
-// userRouter.post('/:id/enable', UserController.enableUser);
-// userRouter.post('/:id/disable', UserController.disableUser);
 exports.userRouter.get("/:id/products", userController_1.default.getUserWithProducts);

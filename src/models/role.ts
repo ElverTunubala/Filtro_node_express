@@ -1,6 +1,7 @@
 import {Table,Column, Model, DataType, PrimaryKey, AutoIncrement,HasMany,
 } from "sequelize-typescript";
 import {User} from './user'
+import { Permission } from "./permissions";
 
 @Table({tableName: "roles", timestamps: false}) // Con false Sequelize ya no maneje los timestamps automáticamente
 export class Rol extends Model {
@@ -21,4 +22,7 @@ export class Rol extends Model {
     //un rol lo puede estar en varios usuarios
     @HasMany(() => User)
     users!: User[];
+
+    @HasMany(() => Permission)
+    permissions!: Permission[];  
 }

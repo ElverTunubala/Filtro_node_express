@@ -10,6 +10,7 @@ import {
   BeforeUpdate,
   BelongsTo,
   ForeignKey,
+  HasOne,
 } from "sequelize-typescript";
 import { Product } from './product';
 import {Rol} from './role'
@@ -55,7 +56,11 @@ export class User extends Model {
   role!: Rol;
   
   //un usuario solo puede tener un carrito
-  @BelongsTo(() => Cart)
+  // @BelongsTo(() => Cart)
+  // cart!: Cart;
+
+  //
+  @HasOne(() => Cart)
   cart!: Cart;
 
   //un usuario puede tener muchos productos

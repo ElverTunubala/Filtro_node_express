@@ -17,9 +17,11 @@ let ProductRepository = class ProductRepository {
     async findById(id) {
         return await models_1.Product.findByPk(id);
     }
+    //obtener productos relazionados con ese id
     async findByUserId(userId) {
         return await models_1.Product.findAll({ where: { userId } });
     }
+    // crear productos
     async create(product) {
         return await models_1.Product.create(product);
     }
@@ -38,6 +40,15 @@ let ProductRepository = class ProductRepository {
             throw new Error('User not found');
         }
         return await productToDelete.destroy();
+    }
+    //metodo para habilitar/inhabilitar productos
+    async setEstate(id, state) {
+        const productToUpdate = await models_1.Product.findByPk(id);
+        if (!productToUpdate) {
+            throw new Error('Product not found');
+        }
+        productToUpdate.state = state;
+        return await productToUpdate.save();
     }
 };
 ProductRepository = __decorate([

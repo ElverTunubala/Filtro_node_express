@@ -70,24 +70,6 @@ class UserController {
             }
         }
     }
-    // static async enableUser(req: Request, res: Response) {
-    //   try {
-    //     const userService = container.resolve(UserService);
-    //     const user = await userService.enableUser(parseInt(req.params.id));
-    //     res.json(user);
-    //   } catch (error:any) {
-    //     res.status(500).json({ message: error.message });
-    //   }
-    // }
-    // static async disableUser(req: Request, res: Response) {
-    //   try {
-    //     const userService = container.resolve(UserService);
-    //     const user = await userService.disableUser(parseInt(req.params.id));
-    //     res.json(user);
-    //   } catch (error:any) {
-    //     res.status(500).json({ message: error.message });
-    //   }
-    // }
     //obtener productos
     static async getUserWithProducts(req, res) {
         const userService = tsyringe_1.container.resolve(userService_1.default);

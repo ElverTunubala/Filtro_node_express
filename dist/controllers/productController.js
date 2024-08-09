@@ -28,8 +28,10 @@ class ProductController {
             res.status(201).json(product);
         }
         catch (error) {
-            if (error.name === 'SequelizeValidationError') {
-                return res.status(400).json({ errors: error.errors.map((e) => e.message) });
+            if (error.name === "SequelizeValidationError") {
+                return res
+                    .status(400)
+                    .json({ errors: error.errors.map((e) => e.message) });
             }
             res.status(500).json({ error: error.message });
         }
@@ -42,8 +44,10 @@ class ProductController {
             res.json(user);
         }
         catch (error) {
-            if (error.name === 'SequelizeValidationError') {
-                return res.status(400).json({ errors: error.errors.map((e) => e.message) });
+            if (error.name === "SequelizeValidationError") {
+                return res
+                    .status(400)
+                    .json({ errors: error.errors.map((e) => e.message) });
             }
             res.status(500).json({ error: error.message });
         }
@@ -55,12 +59,32 @@ class ProductController {
             res.status(204).send();
         }
         catch (error) {
-            if (error.message === 'Product not found') {
+            if (error.message === "Product not found") {
                 res.status(404).json({ message: error.message });
             }
             else {
                 res.status(500).json({ message: error.message });
             }
+        }
+    }
+    static async enableProduct(req, res) {
+        try {
+            const productService = tsyringe_1.container.resolve(productService_1.default);
+            const product = await productService.enableProduct(parseInt(req.params.id));
+            res.json(product);
+        }
+        catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    }
+    static async disableProduct(req, res) {
+        try {
+            const productService = tsyringe_1.container.resolve(productService_1.default);
+            const product = await productService.disableProduct(parseInt(req.params.id));
+            res.json(product);
+        }
+        catch (error) {
+            res.status(500).json({ message: error.message });
         }
     }
 }

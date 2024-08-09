@@ -9,8 +9,16 @@ const userRepository_1 = __importDefault(require("../repositories/userRepository
 const productRepository_1 = __importDefault(require("../repositories/productRepository"));
 const productService_1 = __importDefault(require("../services/productService"));
 const auth_Service_1 = __importDefault(require("../services/auth.Service"));
+const orderRepository_1 = __importDefault(require("../repositories/orderRepository"));
+const orderService_1 = __importDefault(require("../services/orderService"));
+const productCartRepository_1 = __importDefault(require("../repositories/productCartRepository"));
+const productCardService_1 = __importDefault(require("../services/productCardService"));
 tsyringe_1.container.registerSingleton(userRepository_1.default);
 tsyringe_1.container.registerSingleton(userService_1.default);
 tsyringe_1.container.registerSingleton(auth_Service_1.default);
 tsyringe_1.container.registerSingleton(productRepository_1.default);
 tsyringe_1.container.registerSingleton(productService_1.default);
+tsyringe_1.container.registerSingleton(orderRepository_1.default);
+tsyringe_1.container.registerSingleton(orderService_1.default);
+tsyringe_1.container.registerSingleton(productCartRepository_1.default);
+tsyringe_1.container.registerSingleton(productCardService_1.default);
